@@ -33,24 +33,25 @@ app.delete('/users', );
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 }) */
-import express from 'express'
-import fs from 'fs'
-    const rawUserdata = fs.readFileSync('src/db/users.json')
-    const users = JSON.parse(rawUserdata)
+    import express from 'express'
+    import fs from 'fs'
+        const rawUserdata = fs.readFileSync('src/db/users.json')
+        const users = JSON.parse(rawUserdata)
+    
+    import {  loginRouter, userRouter } from './routers/user-router.js';
+import { autthenticationRouter } from './routers/authenthication.js';
 
-import {  loginRouter, userRouter } from './routers/user-router.js';
+     
+        const app = express();
+        const port = 3000;
+        app.get(users)
+        app.use(express.json());
+        app.use("/users" , userRouter)
+app.use("/authentication" , autthenticationRouter)
+       
  
-    const app = express();
-    const port = 3000;
-    
-    app.get(users)
-    app.use(express.json());
-    
-   
-
-    app.use("/users" , userRouter)
-app.use("/users/login", loginRouter)
-
-    app.listen(port, () => {
-        console.log(`Example app listening on port ${port}`)
-    })
+/*     app.use("/users/login", loginRouter)
+    app.use("/log" , autthenticationRouter)  */
+        app.listen(port, () => {
+            console.log(`Example app listening on port ${port}`)
+        })
