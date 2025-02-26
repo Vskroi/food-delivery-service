@@ -1,6 +1,6 @@
 import express from 'express'
-import { adminPost } from '../controllers/adminPost.js';
-import { getAdmin } from '../controllers/adminGet.js';
+import { adminPost } from '../controllers/admin/adminPost.js';
+import { getAdmin } from '../controllers/admin/adminGet.js';
 
 export const adminRouter = express.Router();
 
