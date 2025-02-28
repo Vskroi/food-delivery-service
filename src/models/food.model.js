@@ -5,4 +5,4 @@ const foodSchame = new mongoose.Schema({
     ingerdiets:{type:String , require: true},
     category:{type: mongoose.Types.ObjectId , require: true}
 });
-export const Users = mongoose.model("foods" ,foodSchame )
+export const Food = mongoose.model("foods" ,foodSchame )

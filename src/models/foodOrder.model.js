@@ -10,4 +10,4 @@ const foodOrderSchema = new mongoose.Schema({
         require: true,
     }
 })
-export const Users = mongoose.model("foodOrder", foodOrderSchema);
+export const OrderFoods = mongoose.model("foodOrder", foodOrderSchema);
