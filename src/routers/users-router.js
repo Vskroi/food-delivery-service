@@ -1,11 +1,11 @@
+// get user by id
+// delete user by id
+// update user
+// get all users
 import { Router } from "express";
-import { CreateUser } from "../controllers/users/CreateUser.controllers.js";
-import { deleteUsers } from "../controllers/users/DeleteUser.controllers.js";
-import { getUsers } from "../controllers/users/GetUser.controllers.js";
+import { deleteUser } from "../controllers/users/DeleteUser.controllers.js";
 import { updateUser } from "../controllers/users/UpdateUser.controllers.js";
-
-export const CreateUserRouter = Router();
-CreateUserRouter.post("/", CreateUser);
-CreateUserRouter.delete("/", deleteUsers);
-CreateUserRouter.get("/", getUsers);
-CreateUserRouter.put("/", updateUser);
+import { validateUserId } from "../middleware/validate-user-id.js";
+export const userRouter = Router();
+userRouter.delete("/delete", validateUserId, deleteUser);
+userRouter.put("/update", validateUserId, updateUser);

@@ -1,20 +1,29 @@
 import { Users } from "../../models/user.model.js";
+import bcrypt from "bcrypt";
 
-export const deleteUsers = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-
-    console.log("Received request to delete user:", { email, password });
 
     const user = await Users.findOne({ email });
 
     if (!user) {
-      return res.status(404).send({ message: "User not found" });
+      return res
+        .status(404)
+        .send({ success: false, message: "User not found" });
     }
 
-    await Users.deleteOne({ email });
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    res.send({ message: "User deleted successfully" });
+    if (!isPasswordValid) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Invalid password." });
+    }
+
+    await Users.deleteOne({ id: user._id });
+
+    res.send({ success: true, message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
     return res.status(500).send({ message: "Internal server error" });

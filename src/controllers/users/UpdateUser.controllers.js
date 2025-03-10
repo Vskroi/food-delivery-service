@@ -1,14 +1,15 @@
 import { Users } from "../../models/user.model.js";
 
 export const updateUser = async (req, res) => {
+  const { id, email } = req.body;
   try {
-    const { email, password } = req.body;
-    const users = await Users.find();
-    const findEmailIndex = users.findIndex((users) => users.email === email);
-
-    users[findEmailIndex].password = password;
-    res.send({ status: "success", data: users });
+    const user = await Users.findByIdAndUpdate(
+      { _id: id },
+      { email: email },
+      { returnDocument: true }
+    );
+    res.status(201).json({ success: true, data: user });
   } catch (error) {
-    res.status(500).send("Error fetching users: " + error.message);
+    res.status(500).json("Error fetching users: " + error.message);
   }
 };

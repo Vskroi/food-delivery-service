@@ -1,22 +1,13 @@
-import express from "express";
 import cors from "cors";
-
-import dotenv from  "dotenv"
+import express from "express";
+import { connectToMongoDB } from "./mongo-connection.js";
+import { AuthenticationRouter } from "./routers/authintication-router.js";
+import { userRouter } from "./routers/users-router.js";
+/* 
 import { adminRouter } from "./routers/admin-router.js";
-import { CreateUserRouter } from "./routers/users-router.js";
+import { CreateUserRouter } from "./routers/users-router.js"; */
 
-import mongoose from "mongoose";
-
-dotenv.config()
-  const uri = process.env.DATABASE_CONNECTION_URL
-    ;
-  try {
-    await mongoose.connect(uri);
-    console.log("Successfully connected");
-  } catch (error) {
-    console.log("Error!", error);
-  }
-
+// import { foodRouter } from "./routers/food-router.js";
 
 const app = express();
 const port = 4000;
@@ -24,9 +15,13 @@ const port = 4000;
 app.use(cors());
 
 app.use(express.json());
-
-app.use("/admin", adminRouter);
-app.use('/users' , CreateUserRouter)
+connectToMongoDB();
+// app.use("/admin", adminRouter);
+// app.use("/users", CreateUserRouter);
+// app.use("/food", foodRouter);
+// app.use("/category");
+app.use('/user' , AuthenticationRouter)
+app.use('/user' , userRouter)
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
