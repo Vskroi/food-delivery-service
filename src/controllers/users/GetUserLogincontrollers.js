@@ -9,7 +9,7 @@ export const loginUser = async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .send({ success: false, message: "User not found." });
+        .json({ success: false, message: "User not found." });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -20,14 +20,14 @@ export const loginUser = async (req, res) => {
         .status(400)
         .send({ success: false, message: "Invalid password." });
     } else {
-      return res.status(200).send({
+      return res.status(200).json({
         success: true,
         message: "Login successful.",
       });
     }
   } catch (error) {
     console.error(error); 
-    res.status(500).send({
+    res.status(500).json({
       success: false,
       message: "An error occurred. Please try again later.",
     });

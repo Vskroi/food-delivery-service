@@ -4,19 +4,19 @@ export const deleteFood = async (req, res) => {
   try {
     const { foodName } = req.body;
 
-    console.log("Received request to delete foodName:", { foodName });
-
-    const Foods = await Food.findOne({ foodName });
-
-    if (!Foods) {
-      return res.status(404).send({ message: "foodName not found" });
+    if (!foodName) {
+      return res.status(400).json({ message: "foodName is required" });
     }
 
-    await Foods.deleteOne({ foodName });
+    const food = await Food.findOne({foodName });
 
-    res.send({ message: "foodName deleted successfully" });
+    if (!food) {
+      return res.status(404).json({ message: "Food not found" });
+    }
+
+    res.status(200).json({ message: `${foodName} deleted successfully` });
   } catch (error) {
-    console.error("Error deleting user:", error);
-    return res.status(500).send({ message: "Internal server error" });
+    console.error("Error deleting food:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };

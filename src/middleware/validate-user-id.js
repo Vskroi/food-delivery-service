@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Users } from "../models/user.model.js";
 export const validateUserId = async (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.params;
   try {
     if (!id) {
       res.status(303).json({ success: false, message: "Id not provided" });

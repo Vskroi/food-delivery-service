@@ -1,16 +1,21 @@
-import { Food } from "../../models/food.model";
+import { Food } from "../../models/food.model.js";
+
 export const CreateFoods = async (req, res) => {
-  const { foodName, price ,  ingerdiets , category} = req.body;
+  const { foodName, price, ingerdiets, category } = req.body;
   try {
-    const Foods = await Food.create({
-        foodName : foodName, 
-        price : price ,  
-        ingerdiets : ingerdiets , 
-        category : category
+    const food = await Food.create({
+      foodName: foodName,
+      price: price,
+      ingerdiets: ingerdiets,
+      category: category,
     });
-    res.status(200).send(Foods);
+
+    res.status(200).json({
+      success: true,
+      message: "Food created successfully",
+      food: food,
+    });
   } catch (error) {
-    console.log("Error!", error);
-    res.send().status(400);
+    res.status(400).json({ success: false, message: `Error creating food ${error}` });
   }
 };

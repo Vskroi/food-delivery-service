@@ -3,14 +3,16 @@ import bcrypt from "bcrypt";
 
 export const deleteUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const {  password } = req.body;
+    const {id} = req.params
 
-    const user = await Users.findOne({ email });
+    const user = await Users.findOne({ _id: id });
+    console.log(user)
 
     if (!user) {
       return res
         .status(404)
-        .send({ success: false, message: "User not found" });
+        .json({ success: false, message: "User not found" });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -18,14 +20,14 @@ export const deleteUser = async (req, res) => {
     if (!isPasswordValid) {
       return res
         .status(400)
-        .send({ success: false, message: "Invalid password." });
+        .json({ success: false, message: "Invalid password." });
     }
 
-    await Users.deleteOne({ id: user._id });
-
+   const deletee =   await Users.deleteOne({ _id: user._id });
+console.log("delete", deletee)
     res.send({ success: true, message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
-    return res.status(500).send({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };

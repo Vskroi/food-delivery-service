@@ -1,4 +1,4 @@
-import { Users } from "../models/admin.model";
+import { Users } from "../../models/admin.model";
 
 export const validateFindOneUser = async(email) => {
     try{

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
 const categoriesSchmea = new mongoose.Schema({
-    cateryName :{Type: String , require: true}
+    cateryName :{type: String , required: true}
 })
 export const Categories = mongoose.model("categories" , categoriesSchmea)

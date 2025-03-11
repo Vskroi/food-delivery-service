@@ -1,18 +1,25 @@
-import { Food } from "../../models/food.model";
+import { foodOrder } from "../../models/foodOrder.model.js";
 
-export const UpdateUser = async (req, res) => {
+
+export const updateFoodOrder = async (req, res) => {
+  const { userId, id } = req.params;
+  const { totalPrice, image, foodOrderItems, status } = req.body;
+
   try {
-    const { foodName, price , ingerdiets , category}  = req.body;
-    const Foods = await Food.find();
-    const findfoodNameIndex = Foods.findIndex((Foods) => Foods.foodName === foodName);
+    const updatedFoodOrder = await foodOrder.findOneAndUpdate(
+      { user: userId, _id: id },
+      { totalPrice, image, foodOrderItems, status, updatedAt: Date.now() },
+      { new: true } 
+    );
 
-    Foods[findEmailIndex].price = price;
-    Foods[findEmailIndex].ingerdiets = ingerdiets;
-    Foods[findEmailIndex].category = category;
+    if (!updatedFoodOrder) {
+      return res.status(404).json({ error: "Food order not found" });
+    }
 
-
-    res.send({ status: "success", data: users });
+    res.status(200).json(updatedFoodOrder);
   } catch (error) {
-    res.status(500).send("Error fetching users: " + error.message);
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while updating the food order" });
   }
 };
+
