@@ -8,11 +8,11 @@ export const createfoodOrder = async (req, res) => {
   
     const newFoodOrder = await foodOrder.create({
       user: userId, 
-      foodId: id, 
-      totalPrice,
-      image,
-      foodOrderItems,
-      status,
+      _id: id, 
+      totalPrice : totalPrice,
+      image : image,
+      foodOrderItems : foodOrderItems,
+      status : status ,
     });
 
 

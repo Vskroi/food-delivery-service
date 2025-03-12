@@ -1,9 +1,13 @@
-import { FoodOrderItem } from "../../models/foodOrderItem.model.js"
+import { FoodOrderItem } from "../../models/foodOrderItem.model.js";
 export const updateFoodOrderItem = async (req, res) => {
   const { id } = req.params;
   const { food, quantity } = req.body;
   try {
-    const updatedItem = await FoodOrderItem.findByIdAndUpdate(id, { food, quantity }, { new: true });
+    const updatedItem = await FoodOrderItem.findByIdAndUpdate(
+      id,
+      { food, quantity },
+      { new: true }
+    );
     if (!updatedItem) {
       return res.status(404).json({ error: "Food order item not found" });
     }

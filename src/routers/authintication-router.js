@@ -3,16 +3,17 @@ import { validateEmailAndPassword } from "../middleware/Login/validate-email-and
 import { createUser } from "../controllers/users/CreateUser.controllers.js";
 
 import { validateUserEmail } from "../middleware/Login/validate-user-email.js";
-import { deleteUser } from "../controllers/users/DeleteUser.controllers.js";
-import { updateUser } from "../controllers/users/UpdateUser.controllers.js";
-import { loginUser } from "../controllers/users/GetUserLogincontrollers.js";
+import { loginUser } from "../controllers/users/postUser.controllers.js";
+
+
 
 export const AuthenticationRouter = Router();
 
 AuthenticationRouter.post(
-  "/",
+  "/sign-up",
   validateEmailAndPassword,
   validateUserEmail,
   createUser
 );
-AuthenticationRouter.get("/", validateEmailAndPassword, loginUser);
+AuthenticationRouter.get("/login", validateEmailAndPassword, loginUser);
+AuthenticationRouter.post("/login", loginUser)

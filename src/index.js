@@ -25,7 +25,7 @@ connectToMongoDB();
 // app.use("/food", foodRouter);
 // app.use("/category");
 app.use('/user' , AuthenticationRouter)
-app.use('/user' , userRouter)
+app.use('/users' , userRouter)
 app.use('/food' , foodRouter)
 app.use('/categories' , categoriesRouter)
 app.use('/foodOrder' ,foodOrderRouter)
