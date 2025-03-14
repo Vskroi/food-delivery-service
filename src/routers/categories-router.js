@@ -4,8 +4,9 @@ import { DeleteCategories } from "../controllers/categories/DeleteCategories.con
 
 import { getAllFoodCategory } from "../controllers/categories/GetAllFoodCategories.js";
 import { getFoodCategory } from "../controllers/categories/GetCategories.controllers.js";
+import { validateCateryName } from "../middleware/Food/validate-cateryName.js";
 export const categoriesRouter = Router();
-categoriesRouter.post('/', CreateCategories)
+categoriesRouter.post('/', validateCateryName, CreateCategories)
 categoriesRouter.delete('/', DeleteCategories )
 categoriesRouter.get('/' ,getAllFoodCategory )
 categoriesRouter.get('/:id',getFoodCategory)
