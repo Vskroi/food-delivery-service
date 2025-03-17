@@ -3,6 +3,7 @@ const foodSchame = new mongoose.Schema({
     foodName: {type : String , required:true},
     price: {type: Number, required: true},
     ingerdiets:{type:String , required: true},
-    category:{type: mongoose.Types.ObjectId ,ref: "categories",  required: true}
+    category:{type: mongoose.Types.ObjectId ,ref: "categories",  required: true},
+    image: { type: String, required: true },
 });
 export const Food = mongoose.model("foods" ,foodSchame )

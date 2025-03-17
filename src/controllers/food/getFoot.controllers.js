@@ -17,7 +17,7 @@ export const getFood = async (req, res) => {
       return res.status(200).json({
         success: true,
         message: "Food found successfully",
-        food: { name: food.foodName, price: food.price, ingerdiets:food.ingerdiets, category: food.category } 
+        food: { name: food.foodName, price: food.price, ingerdiets:food.ingerdiets, category: food.category, image: food.image} 
       });
     }
   } catch (error) {
