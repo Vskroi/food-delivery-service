@@ -7,7 +7,7 @@ import { updateFood } from "../controllers/food/UpdateFood.controllers.js";
 import { getAllFoods } from "../controllers/food/getAllFood.controllers.js";
 export const foodRouter = Router();
 foodRouter.post("/add", validateFoodName, CreateFoods);
-foodRouter.get("/category/:category", getFood);
+foodRouter.get("/category/:categoryId", getFood);
 foodRouter.delete("/", deleteFood);
 foodRouter.put('/:id',updateFood)
 foodRouter.get("/allfoods", getAllFoods)
