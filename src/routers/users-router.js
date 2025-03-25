@@ -6,6 +6,8 @@ import { Router } from "express";
 import { deleteUser } from "../controllers/users/DeleteUser.controllers.js";
 import { updateUser } from "../controllers/users/UpdateUser.controllers.js";
 import { validateUserId } from "../middleware/validate-user-id.js";
+import { getAllUsers } from "../controllers/users/getAllUsers.controllers.js";
 export const userRouter = Router();
 userRouter.delete("/:id", validateUserId, deleteUser);
 userRouter.put("/:id", validateUserId, updateUser);
+userRouter.get("/allUsers" , getAllUsers)
