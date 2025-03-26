@@ -2,7 +2,7 @@ import { Food } from "../../models/food.model.js";
 
 export const updateFood = async (req, res) => {
   const { foodName, price, ingerdiets, category } = req.body;
-  const { id } = req.params;
+  const { id } = req.pramas;
   try {
     const user = await Food.findByIdAndUpdate(
       { _id: id },
