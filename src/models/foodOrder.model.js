@@ -6,7 +6,10 @@ const foodOrderSchema = new mongoose.Schema({
   _id:{ type: mongoose.Types.ObjectId, required: true, ref: "foods" },
   totalPrice: { type: Number, required: true },
   image: { type: String, required: true },
-  foodOrderItems: [{ type: mongoose.Types.ObjectId, ref: "foodOrderItem" }],
+  foodOrderItems: [{ 
+    food: { type: mongoose.Types.ObjectId, ref: "foods" }, 
+    quantity: { type: Number, required: true }
+   }],
   status: {
     type: String,
     enum: ["PENDING", "CANCELLED", "DELIVERED"],

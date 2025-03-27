@@ -3,8 +3,9 @@ import { validateEmailAndPassword } from "../middleware/Login/validate-email-and
 import { createUser } from "../controllers/users/CreateUser.controllers.js";
 
 import { validateUserEmail } from "../middleware/Login/validate-user-email.js";
-import { loginUser } from "../controllers/users/postUser.controllers.js";
+
 import { checkUserSigned } from "../middleware/Login/check-user-signed.js";
+import { loginUser } from "../controllers/users/loginUser.controllers.js";
 
 
 
@@ -16,6 +17,6 @@ AuthenticationRouter.post(
   validateUserEmail,
   createUser
 );
-AuthenticationRouter.get("/login", validateEmailAndPassword, loginUser);
-AuthenticationRouter.post("/login", loginUser)
+AuthenticationRouter.post("/login", validateEmailAndPassword, loginUser);
+
 
