@@ -1,26 +1,23 @@
 import { foodOrder } from "../../models/foodOrder.model.js";
 
 export const createfoodOrder = async (req, res) => {
-  const { userId, id } = req.params; 
-  const { totalPrice, image, foodOrderItems, status } = req.body; 
+
+  const { totalPrice, image, food, quantity, status , userId } = req.body;
 
   try {
-  
     const newFoodOrder = await foodOrder.create({
-      user: userId, 
-      _id: id, 
-      totalPrice : totalPrice,
-      image : image,
-      foodOrderItems : foodOrderItems,
-      status : status ,
+      user: userId,
+      totalPrice: totalPrice,
+      image: image,
+      foodOrderItems: {food : food , quantity: quantity},
+      status: status,
     });
-
-
-
 
     res.status(201).json(newFoodOrder);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred while creating the food order" });
+    res
+      .status(500)
+      .json({ error: "An error occurred while creating the food order" });
   }
 };

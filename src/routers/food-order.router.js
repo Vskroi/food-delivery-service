@@ -2,15 +2,15 @@ import { Router } from "express";
 
 import { updateFoodOrder } from "../controllers/foodOrder/UpdateFoodORder.controllers.js";
 import { deleteFoodOrder } from "../controllers/foodOrder/DeleteFoodOrder.controllers.js";
-import { createfoodOrder } from "../controllers/foodOrder/CreateFoodOrder.controllers.js";
+import { createfoodOrder } from "../controllers/foodOrder/CreateFoodORder.controllers.js";
 import { getFoodOrder } from "../controllers/foodOrder/GetFoodORder.controllers.js";
 
 export const foodOrderRouter = Router();
 
-foodOrderRouter.post("/:userId/:id", createfoodOrder);
+foodOrderRouter.post("/create", createfoodOrder);
 
-foodOrderRouter.get("/:userId/:id", getFoodOrder);
+foodOrderRouter.get("/", getFoodOrder);
 
-foodOrderRouter.put("/:userId/:id", updateFoodOrder);
+foodOrderRouter.put("/", updateFoodOrder);
 
-foodOrderRouter.delete("/:userId/:id", deleteFoodOrder);
+foodOrderRouter.delete("/", deleteFoodOrder);

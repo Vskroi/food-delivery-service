@@ -13,7 +13,7 @@ const foodOrderSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ["PENDING", "CANCELLED", "DELIVERED"],
-    required: true,
+    
   },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
