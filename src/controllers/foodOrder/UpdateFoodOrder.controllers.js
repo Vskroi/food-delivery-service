@@ -2,13 +2,13 @@ import { foodOrder } from "../../models/foodOrder.model.js";
 
 
 export const updateFoodOrder = async (req, res) => {
-  const { userId, id } = req.params;
-  const { totalPrice, image, foodOrderItems, status } = req.body;
+  const { id } = req.params;
+  const {  status } = req.body;
 
   try {
     const updatedFoodOrder = await foodOrder.findOneAndUpdate(
-      { user: userId, _id: id },
-      { totalPrice, image, foodOrderItems, status, updatedAt: Date.now() },
+      {  _id: id },
+      {  status : status, updatedAt: Date.now() },
       { new: true } 
     );
 

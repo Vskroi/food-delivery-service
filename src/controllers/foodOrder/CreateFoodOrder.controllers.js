@@ -1,19 +1,17 @@
 import { foodOrder } from "../../models/foodOrder.model.js";
 
 export const createfoodOrder = async (req, res) => {
-
-  const { totalPrice, image, food, quantity, status , userId } = req.body;
+  const { totalPrice, image, food, quantity, userId } = req.body;
 
   try {
     const newFoodOrder = await foodOrder.create({
       user: userId,
       totalPrice: totalPrice,
       image: image,
-      foodOrderItems: {food : food , quantity: quantity},
-      status: status,
+      foodOrderItems: { food: food, quantity: quantity },
     });
 
-    res.status(201).json(newFoodOrder);
+    res.status(201).json({ success: true, newFoodOrder: newFoodOrder });
   } catch (error) {
     console.error(error);
     res

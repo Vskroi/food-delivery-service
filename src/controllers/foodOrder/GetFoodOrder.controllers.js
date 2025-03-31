@@ -1,6 +1,6 @@
 import { foodOrder } from "../../models/foodOrder.model.js";
 
-export const getFoodOrder = async (req, res) => {
+export const postFoodOrder = async (req, res) => {
   const { userId, id } = req.params;
   try {
     const foodOrderDetails = await foodOrder.findOne({ user: userId, _id: id });
