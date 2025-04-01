@@ -1,9 +1,14 @@
 import { foodOrder } from "../../models/foodOrder.model.js";
+import { ObjectId } from "mongodb";
 
-export const postFoodOrder = async (req, res) => {
-  const { userId, id } = req.params;
+export const userFoodOrder = async (req, res) => {
+  const { userId } = req.params;
   try {
-    const foodOrderDetails = await foodOrder.findOne({ user: userId, _id: id });
+const User = new ObjectId(userId)
+    const foodOrderDetails = await foodOrder
+      .find({ user: User, })
+      .populate("foodOrderItems.food", "foodName price _id ingerdiets category image")
+      .exec();
     if (!foodOrderDetails) {
       return res.status(404).json({ error: "Food order not found" });
     }
