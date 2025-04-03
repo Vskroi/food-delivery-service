@@ -14,7 +14,7 @@ import { CreateUserRouter } from "./routers/users-router.js"; */
 // import { foodRouter } from "./routers/food-router.js";
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT;
 
 app.use(cors());
 
