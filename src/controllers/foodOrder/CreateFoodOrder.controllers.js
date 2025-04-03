@@ -9,6 +9,7 @@ export const createfoodOrder = async (req, res) => {
       totalPrice: totalPrice,
       image: image,
       foodOrderItems: { food: food, quantity: quantity },
+      status:"PENDING",
     });
 
     res.status(201).json({ success: true, newFoodOrder: newFoodOrder });
